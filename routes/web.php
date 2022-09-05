@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return json_decode('{ "status": 404,  "message" : "not found" }');
 });
 
-Route::group(['prefix' => 'api'], function(){
+Route::group(['prefix' => 'api/v1'], function(){
     Route::get('/all', [ApiController::class, 'getAll'])->name('getAll');
+    Route::get('/scp/{id}', [ApiController::class, 'getOne'])->name('getOne');
+    Route::get('/range/{first}/{last}', [ApiController::class, 'getRange'])->name('getRange');
+
+    //TODO do a classes get
 });

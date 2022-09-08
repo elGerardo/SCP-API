@@ -19,8 +19,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api/v1'], function(){
     Route::get('/all', [ApiController::class, 'getAll'])->name('getAll');
-    Route::get('/scp/{id}', [ApiController::class, 'getOne'])->name('getOne');
-    Route::get('/range/{first}/{last}', [ApiController::class, 'getRange'])->name('getRange');
+    Route::get('/scp', [ApiController::class, 'getOne'])->name('getOne');
+    Route::get('/range', [ApiController::class, 'getRange'])->name('getRange');
 
     //TODO do a classes get
+    Route::get('/allClasses', [ApiController::class, 'getAllClasses'])->name('getAllclasses');
 });

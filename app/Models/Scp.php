@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Scp extends Model
 {
     protected $table = 'scp';
+    protected $hidden = ['class_id','feature_id','type_id'];
 
-    public function classes(){
+    public function class(){
         return $this->belongsTo(Classes::class, 'class_id', 'id');
     }
 
-    public function scp_skills(){
+    public function skills(){
         return $this->hasMany(ScpSkills::class, 'scp_id', 'id');
     }
 

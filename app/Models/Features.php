@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Features extends Model
 {
     protected $table = 'features';
+    protected $hidden = ['id','scp_id'];
 }

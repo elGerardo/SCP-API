@@ -67,3 +67,15 @@ header h2{
     background-color: black;
     border: 1px solid black;   
 }
+
+.api_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+textarea{
+    width: 60%;
+    height: 350px;
+}

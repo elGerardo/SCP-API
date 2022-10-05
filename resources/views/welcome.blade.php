@@ -25,7 +25,7 @@
         <header>
             <div>
                 <nav>
-                    <a href="">API Endpoints</a>
+                    <a href="">API Doc</a>
                     <a href="">Donate</a>
                 </nav>
             </div>
@@ -41,6 +41,10 @@
                     <input class="endpoint" id="endpoint" type="text" value="">
                 </div>
                     <input class="button" id="get_button" type="button" value="Submit">
+            </div>
+            <div class="api_container">    
+                <textarea id="api_content" readonly>
+                </textarea>
             </div>
         </main>
     </body>

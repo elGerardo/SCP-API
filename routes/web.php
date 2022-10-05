@@ -22,7 +22,16 @@ Route::group(['prefix' => 'api/v1'], function(){
     Route::get('/all', [ApiController::class, 'getAll'])->name('getAll');
     Route::get('/scp', [ApiController::class, 'getOne'])->name('getOne');
     Route::get('/range', [ApiController::class, 'getRange'])->name('getRange');
+    Route::get('/scp_enemies', [ApiController::class, 'getScpEnemies'])->name('getRange');
     //TODO do a route to get a scp by the class
 
+    /* --------- CLASSES --------- */
     Route::get('/allClasses', [ApiController::class, 'getAllClasses'])->name('getAllclasses');
+
+    /* --------- Interview --------- */
+    Route::get('/interviews', [ApiController::class, 'getInterviews'])->name('getInterviews');
+
+
+    /* --------- SCRAPPING --------- */
+    //Route::get('/getScrapping', [ApiController::class, 'getScrapping'])->name('getScrapping');
 });

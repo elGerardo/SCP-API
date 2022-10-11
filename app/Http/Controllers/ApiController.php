@@ -24,9 +24,9 @@ class ApiController extends Controller
     }
 
     public function getOne(Request $request){
-        $id = $request->id;
-        $find = Scp::with(['class', 'skills.skill', 'features'])->find($id);
-        $find != null ? $data = $find : $data = json_decode('{ "status": 404,  "message" : "not found" }');
+        $id = $request->scpId;
+        $data = Scp::with(['class', 'skills.skill', 'features'])->find($id);
+        if( $data == null ) $data = json_decode('{ "status": 404,  "message" : "not found" }');
         return $data;
     }
 
@@ -36,6 +36,7 @@ class ApiController extends Controller
         $data = Scp::with(['class', 'skills.skill', 'features'])
         ->whereBetween('id',[$first, $last])
         ->get();
+        if($data->isEmpty()) $data = json_decode('{ "status": 404,  "message" : "not range found" }');
         return $data; 
     }
     
@@ -45,6 +46,7 @@ class ApiController extends Controller
         ->with('enemy', function($query) {
             $query->select('id','name','scp_link');
         })->get();
+        if($data->isEmpty()) $data = json_decode('{ "status": 404,  "message" : "not enemies found" }');
         return $data;
     }
 
@@ -52,6 +54,7 @@ class ApiController extends Controller
     public function getInterviews(Request $request){
         $scpId = $request->scpId;
         $data = Interviews::where('scp_id', $scpId)->get();
+        if($data->isEmpty()) $data = json_decode('{ "status": 404,  "message" : "not interviews found" }');
         return $data;
     }
 

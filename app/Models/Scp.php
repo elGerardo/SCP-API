@@ -19,6 +19,6 @@ class Scp extends Model
     }
 
     public function features(){
-        return $this->belongsTo(Features::class, 'feature_id', 'id');
+        return $this->belongsTo(Features::class, 'id', 'scp_id');
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Contracts\Validation\Validator;
 use App\Exceptions\JsonValidationException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class GetScpRequest extends FormRequest
+class GetRangeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,38 +17,30 @@ class GetScpRequest extends FormRequest
         return true;
     }
 
+    public function messages()
+    {
+        return [
+            'first.required' => 'Parameter first is required',
+            'first.numeric' => 'Parameter first must be a numeric',
+            'last.required' => 'Parameter last is required',
+            'last.numeric' => 'Parameter last must be a numeric',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function messages()
-    {
-        return [
-            'scpId.required' => 'Parameter scpId is required',
-            'scpId.numeric' => 'Parameter scpId must be a number'
-        ];
-    }
     public function rules()
     {
         return [
-            'scpId' => 'required|numeric'
+            'first' => 'required|numeric',
+            'last' => 'required|numeric',
         ];
     }
 
-     /**
-     * Handle a failed authorization attempt.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    /*protected function failedAuthorization()
-    {
-        throw new AuthorizationException;
-    }*/
-
-    /**
+        /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator
@@ -60,5 +52,4 @@ class GetScpRequest extends FormRequest
     {
         throw new JsonValidationException($validator);
     }
-
 }

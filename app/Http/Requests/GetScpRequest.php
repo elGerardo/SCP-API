@@ -25,14 +25,14 @@ class GetScpRequest extends FormRequest
     public function messages()
     {
         return [
-            'scpId.required' => 'Parameter scpId is required',
-            'scpId.numeric' => 'Parameter scpId must be a number'
+            'scp.required' => 'Parameter scp is required',
+            'scp.numeric' => 'Parameter scp must be a number'
         ];
     }
     public function rules()
     {
         return [
-            'scpId' => 'required|numeric'
+            'scp' => 'required|numeric'
         ];
     }
 

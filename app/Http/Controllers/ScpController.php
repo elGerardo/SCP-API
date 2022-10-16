@@ -14,9 +14,12 @@ use App\Http\Requests\GetRangeRequest;
 
 class ScpController extends Controller
 {
-    public function get(){
+    public function get(Request $request){
+        $limit = $request->limit;
+        if($limit == null) $limit = 10;
         $data = Scp::with(['class', 'skills.skill', 'features'])
         ->orderBy('id')
+        ->take($limit)
         ->get();
         return response()->json(['status' => 200, 'response' => $data]); 
     }
@@ -31,8 +34,11 @@ class ScpController extends Controller
     public function getRange(GetRangeRequest $request){
         $first = $request->first;
         $last = $request->last;
+        $limit = $request->limit;
+        if($limit == null) $limit = 10;
         $data = Scp::with(['class', 'skills.skill', 'features'])
         ->whereBetween('id',[$first, $last])
+        ->take($limit)
         ->get();
         if($data->isEmpty()) $data = json_decode('{ "message" : "not range found" }');
         return response()->json(['status' => 200, 'response' => $data]); 

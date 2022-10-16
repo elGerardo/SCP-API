@@ -51,9 +51,9 @@ async function getApi(){
     let response = await fetch(complete_url)
     .then( response => response.json() )
     .then( response => {return response} );
-
-    document.getElementById('api_content').value = '';
-    document.getElementById('api_content').value = JSON.stringify(response);
+    console.log(response)
+    document.getElementById('api_content').innerHTML = '';
+    document.getElementById('api_content').innerHTML = JSON.stringify(response, undefined, 2);
 }
 
 

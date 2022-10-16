@@ -21,6 +21,10 @@ Route::get('/', function () {
     return View('welcome');
 });
 
+Route::get('/endpoints', function () {
+    return View('endpoints');
+});
+
 Route::group(['prefix' => 'api/v1'], function(){
 
     Route::group(['prefix' => 'scp'], function(){

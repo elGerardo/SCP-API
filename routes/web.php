@@ -31,7 +31,7 @@ Route::group(['prefix' => 'api/v1'], function(){
         Route::get('/all', [ScpController::class, 'get'])->name('getScp');
         Route::get('/find', [ScpController::class, 'find'])->name('findScp');
         Route::get('/range', [ScpController::class, 'getRange'])->name('getRange');
-        Route::get('/enemies', [ScpController::class, 'getScpEnemies'])->name('getRange');
+        Route::get('/enemies', [ScpController::class, 'getScpEnemies'])->name('getEnemies');
     });
 
     Route::group(['prefix' => 'classes'], function(){

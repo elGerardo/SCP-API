@@ -1,0 +1,21 @@
+.container
+{
+    background-color: #1c1c1c;
+    color: white;
+} 
+
+.container a
+{
+    color: white;
+}
+
+.container p
+{
+    margin: 0 1rem;
+}
+
+.container .image
+{
+    color: white;
+    width: 50px;
+}

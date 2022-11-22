@@ -1,10 +1,13 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+  publicRuntimeConfig: {
+    baseUrlApi: process.env.BASE_URL_API,
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'scp_app',
+    title: 'SCP API',
     htmlAttrs: {
       lang: 'en'
     },
@@ -21,6 +24,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "~/assets/main.css"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,7 +42,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    "@nuxtjs/axios",
   ],
+
+  "module.exports": {
+    css: {
+      modules: true
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

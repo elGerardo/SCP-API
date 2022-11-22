@@ -4,7 +4,7 @@
             <b-form @submit.prevent="onSubmit" :class="['d-flex']">
                 <b-form-input
                     type="text"
-                    v-model="this.$config.baseUrlApi"
+                    v-model="baseUrlApi"
                     :class="[$style.baseUrl, 'w-25']"
                     disabled
                 />

@@ -4,6 +4,7 @@ export default {
   publicRuntimeConfig: {
     baseUrlApi: process.env.BASE_URL_API,
   },
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

@@ -14,7 +14,8 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }, params) {
-        let url = `${this.$config.baseUrlApi}/${params.endpoint}/${params.params}`;
+        let baseUrl = "https://scpapi.000webhostapp.com/api/v1"
+        let url = `${baseUrl}/${params.endpoint}/${params.params}`;
         console.log(`${url}`);
 
         let data = await fetch(`${url}`)

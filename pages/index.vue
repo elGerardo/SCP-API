@@ -70,7 +70,7 @@ export default {
 
     data() {
         return {
-            baseUrlApi: this.$config.baseUrlApi,
+            baseUrlApi: "https://scpapi.000webhostapp.com/api/v1",
             params: "scp?limit=10",
             select: {
                 data: "scp",

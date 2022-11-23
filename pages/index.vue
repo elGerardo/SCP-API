@@ -5,7 +5,7 @@
                 <b-form-input
                     type="text"
                     v-model="baseUrlApi"
-                    :class="[$style.baseUrl, 'w-25']"
+                    :class="[$style.baseUrl, 'w-50']"
                     disabled
                 />
                 <b-form-select
@@ -71,7 +71,7 @@ export default {
     data() {
         return {
             baseUrlApi: "https://scpapi.000webhostapp.com/api/v1",
-            params: "scp?limit=10",
+            params: "all?limit=10",
             select: {
                 data: "scp",
                 options: [
@@ -79,6 +79,14 @@ export default {
                         value: "scp",
                         text: "scp",
                     },
+                    {
+                        value: "classes",
+                        text: "classes",
+                    },
+                    {
+                        value: "interviews",
+                        text: "interviews",
+                    }
                 ],
             },
         };

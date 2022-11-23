@@ -1,0 +1,35 @@
+.container
+{
+    background-color: white;
+    color: black;
+}
+
+.code_red
+{
+    color: #E26B73;
+}
+
+.code_green
+{
+    color: #97C475;
+}
+
+.code_blue
+{
+    color: #5CACF0;
+}
+
+.code_yellow
+{
+    color: #d3c040;
+}
+
+.code_orange
+{
+    color: #CD9661;
+}
+
+.code_white
+{
+    color: #ffffff;
+}

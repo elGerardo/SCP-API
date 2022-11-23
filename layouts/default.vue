@@ -2,16 +2,21 @@
     <div :class="[$style.container]">
         <b-navbar :class="['shadow']">
             <b-container :class="['d-flex justify-content-between']">
-                <div
-                    :class="[
-                        'd-flex justify-content-center align-items-center',
-                    ]"
-                >
-                    <b-img src="~/static/logo.png" :class="[$style.image]" />
-                    <p>SCP API</p>
-                </div>
+                <NuxtLink to="/">
+                    <div
+                        :class="[
+                            'd-flex justify-content-center align-items-center',
+                        ]"
+                    >
+                        <b-img
+                            src="~/static/logo.png"
+                            :class="[$style.image]"
+                        />
+                        <p>SCP API</p>
+                    </div>
+                </NuxtLink>
                 <b-navbar-nav>
-                    <NuxtLink to="/doc">API Doc</NuxtLink>
+                    <NuxtLink to="doc">API Doc</NuxtLink>
                 </b-navbar-nav>
             </b-container>
         </b-navbar>

@@ -25,7 +25,6 @@ export const actions = {
             "https://scpapi.000webhostapp.com/api/v1/scp/all"
         ).then((response) => response.json());
 
-        console.log(data);
         commit("items", data.response);
     },
 };

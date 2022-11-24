@@ -17,7 +17,6 @@ export const actions = {
         let data = await fetch(
             "https://scpapi.000webhostapp.com/api/v1/interviews/all"
         ).then((response) => response.json());
-            console.log(data)
         commit("items", data);
     },
 };

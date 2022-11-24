@@ -149,6 +149,21 @@
                                     </tr>
                                 </tbody>
                             </b-table-simple>
+                            <b-button variant="dark" style="font-size:1.4rem" @click="fetchAPI(item.id)">Run API</b-button>
+                            <json-viewer
+                                :class="['my-5']"
+                                :value="
+                                    item.id === 'scp'
+                                        ? scp
+                                        : item.id === 'classes'
+                                        ? classes
+                                        : interviews
+                                "
+                                :expand-depth="5"
+                                copyable
+                                boxed
+                                sort
+                            />
                         </div>
                     </div>
                 </div>
@@ -156,8 +171,15 @@
         </b-container>
     </div>
 </template>
+
 <script>
+import { mapGetters } from "vuex";
+import JsonViewer from "vue-json-viewer";
 export default {
+    components: {
+        JsonViewer,
+    },
+
     data() {
         return {
             list: [
@@ -231,6 +253,20 @@ export default {
                 },
             ],
         };
+    },
+
+    computed: {
+        ...mapGetters({
+            scp: "scp/items",
+            classes: "classes/items",
+            interviews: "interviews/items",
+        }),
+    },
+
+    methods: {
+        async fetchAPI(endpoint) {
+            await this.$store.dispatch(`${endpoint}/get`);
+        },
     },
 };
 </script>

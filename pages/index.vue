@@ -106,8 +106,6 @@ export default {
             };
 
             await this.$store.dispatch("custom/get", params);
-
-            console.log(this.custom);
         },
     },
 };

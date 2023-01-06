@@ -12,7 +12,7 @@ class Features extends Model
     public $timestamps = false;
 
 
-    public function register($request){
+    public static function register($request){
         $data = new Features();
         $data->scp_id = $request->scp_id;
         $data->short_description = $request->short_description;

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Interviews;
 use App\Http\Requests\GetScpRequest;
-use App\Http\Requests\GetRangeRequest;
 
 class InterviewsController extends Controller
 {

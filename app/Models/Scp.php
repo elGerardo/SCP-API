@@ -11,7 +11,7 @@ class Scp extends Model
     protected $hidden = ['class_id','feature_id','type_id'];
     public $timestamps = false;
 
-    public function register($request){
+    public static function register($request){
         
         $scp = new Scp();
         $scp->id = $request->id;

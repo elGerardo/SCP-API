@@ -16,8 +16,7 @@ class InterviewsController extends Controller
     }
 
     public function find(GetScpRequest $request){
-        $id = $request->scp;
-        $data = Interviews::where('scp_id', $id)->get();
+        $data = Interviews::find($request);
         if($data->isEmpty()) $data = json_decode('{ "message" : "not interviews found" }');
         return response()->json(['status' => 200, 'response' => $data]); 
     }

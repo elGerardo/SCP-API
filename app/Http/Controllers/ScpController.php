@@ -5,61 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Scp;
 use App\Models\Features;
-use App\Models\ScpEnemies;
 use App\Http\Requests\GetScpRequest;
 use App\Http\Requests\GetRangeRequest;
+use App\Http\Requests\PostScpRequest;
 
 class ScpController extends Controller
 {
     /* --------- POST --------- */
-    public function registerScp(Request $request){
+    public function registerScp(PostScpRequest $request){
         Scp::register($request);
-        return "Success";
+        return response()->json(["message" => "Success", "status" => "200"]);
     }
-
-    public function registerFeatures(Request $request){
-        Features::register($request);
-        return "Success";
-    }
-
 
     /* --------- GET --------- */
     public function get(Request $request){
-        $limit = $request->limit;
-        if($limit == null) $limit = 10;
-        $data = Scp::with(['class', 'skills.skill', 'features'])
-        ->orderBy('id')
-        ->take($limit)
-        ->get();
+        $data = Scp::get($request);
         return response()->json(['status' => 200, 'response' => $data]); 
     }
 
     public function find(GetScpRequest $request){
-        $id = $request->scp;
-        $data = Scp::with(['class', 'skills.skill', 'features'])->find($id);
-        if( $data == null ) $data = json_decode('{ "message" : "scp not found" }');
+        $data = Scp::find($request);
+        if($data == null) $data = json_decode('{ "message" : "scp not found" }');
         return response()->json(['status' => 200, 'response' => $data]); 
     }
 
     public function getRange(GetRangeRequest $request){
-        $first = $request->first;
-        $last = $request->last;
-        $limit = $request->limit;
-        if($limit == null) $limit = 10;
-        $data = Scp::with(['class', 'skills.skill', 'features'])
-        ->whereBetween('id',[$first, $last])
-        ->take($limit)
-        ->get();
+        $data = Scp::getRange($request);
         if($data->isEmpty()) $data = json_decode('{ "message" : "not range found" }');
         return response()->json(['status' => 200, 'response' => $data]); 
     }
     
     public function getScpEnemies(GetScpRequest $request){
-        $id = $request->scp;
-        $data = ScpEnemies::where('scp_id', $id)
-        ->with('enemy', function($query) {
-            $query->select('id','name','scp_link');
-        })->get();
+        $data = Scp::getScpEnemies($request);
         if($data->isEmpty()) $data = json_decode('{ "message" : "not enemies found" }');
         return response()->json(['status' => 200, 'response' => $data]); 
     }

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-use App\Http\Middleware;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,7 +46,7 @@ Route::group(["middleware" => "verifyAdmin", "prefix" => "admin"], function(){
     ->name('registerScp')
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
-    Route::post('/register_features', [Controllers\ScpController::class, 'registerFeatures'])
+    Route::post('/register_features', [Controllers\FeaturesController::class, 'registerFeatures'])
     ->name('registerFeatures')
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 });

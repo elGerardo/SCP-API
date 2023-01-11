@@ -15,7 +15,7 @@ class GetClassRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     public function messages()

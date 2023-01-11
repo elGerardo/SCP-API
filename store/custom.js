@@ -1,5 +1,5 @@
 export const state = () => ({
-    data: {}
+    data: {},
 });
 
 export const getters = {
@@ -14,12 +14,10 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }, params) {
-        let baseUrl = "https://scpapi.000webhostapp.com/api/v1"
-        let url = `${baseUrl}/${params.endpoint}/${params.params}`;
+        let url = `${process.env.baseUrlApi}/${params.endpoint}/${params.params}`;
 
-        let data = await fetch(`${url}`)
-            .then((response) => response.json());
+        let data = await fetch(`${url}`).then((response) => response.json());
 
-        commit("data", data)
+        commit("data", data);
     },
 };

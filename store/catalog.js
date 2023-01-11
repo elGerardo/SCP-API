@@ -14,10 +14,12 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }) {
-        let data = await fetch(`${process.env.baseUrlApi}/classes/all`).then(
-            (response) => response.json()
-        );
+        let data = await fetch(`${process.env.baseUrlAdminApi}/catalog/all`, {
+            headers: {
+                pwd: process.env.AdminPwd,
+            },
+        }).then((response) => response.json());
 
-        commit("items", data);
+        commit("items", data.response);
     },
 };

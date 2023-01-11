@@ -21,6 +21,7 @@ a
 }
 
 input[type="text"],
+input[type="number"],
 input[type="submit"],
 button,
 .custom-select

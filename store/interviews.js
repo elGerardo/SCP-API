@@ -14,9 +14,9 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }) {
-        let data = await fetch(
-            "https://scpapi.000webhostapp.com/api/v1/interviews/all"
-        ).then((response) => response.json());
+        let data = await fetch(`${process.env.baseUrlApi}/interviews/all`).then(
+            (response) => response.json()
+        );
         commit("items", data);
     },
 };

@@ -45,7 +45,7 @@
                             <p :class="[$style.code_blue]">
                                 BaseURL:
                                 <span :class="[$style.code_white]"
-                                    >https://scpapi.000webhostapp.com/api/v1/</span
+                                    >{{baseUrlApi}}</span
                                 >
                             </p>
                             <p :class="[$style.code_blue]">
@@ -63,7 +63,7 @@
                                 >
                             </p>
                             <p :class="[$style.code_yellow]">
-                                https://scpapi.000webhostapp.com/api/v1/scp/all?limit=10
+                                {{baseUrlApi}}/scp/all?limit=10
                             </p>
                         </b-card-text>
                     </b-card>
@@ -78,7 +78,7 @@
                             <span :class="[$style.code_green]">fetch</span
                             ><span :class="[$style.code_blue]">(</span>
                             <span :class="[$style.code_yellow]"
-                                >'https://scpapi.000webhostapp.com/api/v1/scp/all?limit=10'</span
+                                >'{{baseUrlApi}}/scp/all?limit=10'</span
                             >
                             <span :class="[$style.code_blue]">)</span>.<span
                                 :class="[$style.code_green]"
@@ -182,6 +182,7 @@ export default {
 
     data() {
         return {
+            baseUrlApi: process.env.baseUrlApi,
             list: [
                 {
                     id: "scp",

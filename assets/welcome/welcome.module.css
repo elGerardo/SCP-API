@@ -1,13 +1,8 @@
-.container
-{
-    background-color: white;
-    color: black;
-}
-
 .container_icon
 {
     font-size: 2.4rem;
     border: 1px solid #d4d9de;
+    cursor: pointer;
 }
 
 .custom-select

@@ -14,7 +14,7 @@ class ScpController extends Controller
     /* --------- POST --------- */
     public function registerScp(PostScpRequest $request){
         Scp::register($request);
-        return response()->json(["message" => "Success", "status" => "200"]);
+        return response()->json(["message" => "Success", "status" => 200]);
     }
 
     /* --------- GET --------- */
@@ -22,7 +22,7 @@ class ScpController extends Controller
         $data = Scp::get($request);
         return response()->json(['status' => 200, 'response' => $data]); 
     }
-
+    
     public function find(GetScpRequest $request){
         $data = Scp::find($request);
         if($data == null) $data = json_decode('{ "message" : "scp not found" }');

@@ -19,6 +19,7 @@ class Scp extends Model
         $scp->feeling = $request->feeling;
         $scp->class_id = $request->class_id;
         $scp->type_id = $request->type_id;
+        $scp->picture = $request->picture;
         $scp->save();
     }
 

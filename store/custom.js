@@ -16,8 +16,8 @@ export const actions = {
     async get({ commit }, params) {
         let url = `${process.env.baseUrlApi}/${params.endpoint}/${params.params}`;
 
-        let data = await fetch(`${url}`).then((response) => response.json());
+        let data = await this.$axios.get(`${url}`);
 
-        commit("data", data);
+        commit("data", data.data);
     },
 };

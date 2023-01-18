@@ -44,9 +44,9 @@
                         <b-card-text>
                             <p :class="[$style.code_blue]">
                                 BaseURL:
-                                <span :class="[$style.code_white]"
-                                    >{{baseUrlApi}}</span
-                                >
+                                <span :class="[$style.code_white]">{{
+                                    baseUrlApi
+                                }}</span>
                             </p>
                             <p :class="[$style.code_blue]">
                                 Endpoint:
@@ -63,22 +63,23 @@
                                 >
                             </p>
                             <p :class="[$style.code_yellow]">
-                                {{baseUrlApi}}/scp/all?limit=10
+                                {{ baseUrlApi }}/scp/all?limit=10
                             </p>
                         </b-card-text>
                     </b-card>
+
                     <b-card
                         :class="['my-5']"
                         bg-variant="dark"
                         text-variant="white"
-                        title="Fetching to an Endpoint"
+                        title="Use Fetch to an Endpoint"
                     >
                         <b-card-text>
                             <span :class="[$style.code_red]">return</span>
                             <span :class="[$style.code_green]">fetch</span
                             ><span :class="[$style.code_blue]">(</span>
                             <span :class="[$style.code_yellow]"
-                                >'{{baseUrlApi}}/scp/all?limit=10'</span
+                                >'{{ baseUrlApi }}/scp/all?limit=10'</span
                             >
                             <span :class="[$style.code_blue]">)</span>.<span
                                 :class="[$style.code_green]"
@@ -92,6 +93,22 @@
                                 >json</span
                             ><span :class="[$style.code_yellow]">()</span
                             ><span :class="[$style.code_blue]">)</span>
+                        </b-card-text>
+                    </b-card>
+                    <b-card
+                        :class="['my-5']"
+                        bg-variant="dark"
+                        text-variant="white"
+                        title="Use Axios to an Endpoint"
+                    >
+                        <b-card-text>
+                            <span :class="[$style.code_red]">return</span>
+                            <span :class="[$style.code_green]">axios.get</span
+                            ><span :class="[$style.code_blue]">(</span>
+                            <span :class="[$style.code_yellow]"
+                                >'{{ baseUrlApi }}/scp/all?limit=10'</span
+                            >
+                            <span :class="[$style.code_blue]">)</span>
                         </b-card-text>
                     </b-card>
                     <div
@@ -149,7 +166,12 @@
                                     </tr>
                                 </tbody>
                             </b-table-simple>
-                            <b-button variant="dark" style="font-size:1.4rem" @click="fetchAPI(item.id)">Run API</b-button>
+                            <b-button
+                                variant="dark"
+                                style="font-size: 1.4rem"
+                                @click="fetchAPI(item.id)"
+                                >Run API</b-button
+                            >
                             <json-viewer
                                 :class="['my-5']"
                                 :value="

@@ -14,10 +14,10 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }) {
-        let data = await fetch(`${process.env.baseUrlApi}/classes/all`).then(
-            (response) => response.json()
+        let data = await this.$axios.get(
+            `${process.env.baseUrlApi}/classes/all`
         );
 
-        commit("items", data);
+        commit("items", data.data);
     },
 };

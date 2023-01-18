@@ -19,22 +19,23 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }) {
-        let data = await fetch(`${process.env.baseUrlApi}/scp/all`).then(
-            (response) => response.json()
-        );
+        let data = await this.$axios.get(`${process.env.baseUrlApi}/scp/all`);
 
-        commit("items", data.response);
+        commit("items", data.data.response);
     },
 
     async registerScp(context, form) {
         console.log(form);
-        return await fetch(`${process.env.baseUrlAdminApi}/register_scp`, {
-            method: "POST",
+        const config = {
             headers: {
                 "Content-Type": "application/json",
                 pwd: process.env.AdminPwd,
             },
-            body: JSON.stringify(form),
-        }).then((response) => response.json());
+        };
+        return await this.$axios.post(
+            `${process.env.baseUrlAdminApi}/register_scp`,
+            form,
+            config
+        );
     },
 };

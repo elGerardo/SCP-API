@@ -14,9 +14,7 @@ export const mutations = {
 
 export const actions = {
     async get({ commit }) {
-        let data = await fetch(`${process.env.baseUrlApi}/interviews/all`).then(
-            (response) => response.json()
-        );
-        commit("items", data);
+        let data = await this.$axios.get(`${process.env.baseUrlApi}/interviews/all`);
+        commit("items", data.data);
     },
 };

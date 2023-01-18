@@ -11,6 +11,6 @@ class FeaturesController extends Controller
     //
     public function registerFeatures(PostFeatureRequest $request){
         Features::register($request);
-        return response()->json(["message" => "Success", "status" => "200"]);
+        return response()->json(["message" => "Success", "status" => 200]);
     }
 }

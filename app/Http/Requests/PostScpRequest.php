@@ -22,13 +22,13 @@ class PostScpRequest extends FormRequest
 
         return [
             "id.required" => "Parameter id is required",
-            "id.required" => "Parameter name must be a number",
+            "id.required" => "Parameter id must be a number",
 
             "name.required" => "Parameter name is required",
-            "name.integer" => "Parameter name must be a string",
+            "name.string" => "Parameter name must be a string",
             
             "feeling.required" => "Parameter feeling is required",
-            "feeling.integer" => "Parameter feeling must be a number",
+            "feeling.string" => "Parameter feeling must be a string",
             
             "class_id.required" => "Parameter class_id is required",
             "class_id.integer" => "Parameter class_id must be a number",

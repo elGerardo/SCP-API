@@ -1,35 +1,44 @@
-.container
-{
+.container {
     background-color: white;
     color: black;
 }
 
-.code_red
-{
+.code_red {
     color: #E26B73;
 }
 
-.code_green
-{
+.code_green {
     color: #97C475;
 }
 
-.code_blue
-{
+.code_blue {
     color: #5CACF0;
 }
 
-.code_yellow
-{
+.code_yellow {
     color: #d3c040;
 }
 
-.code_orange
-{
+.code_orange {
     color: #CD9661;
 }
 
-.code_white
-{
+.code_white {
     color: #ffffff;
+}
+
+@media only screen and (max-width: 488px) {
+    tbody {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .navbar
+    {
+        font-size: 1.2rem;
+    }
+    tbody {
+        font-size: 1rem;
+    }
 }

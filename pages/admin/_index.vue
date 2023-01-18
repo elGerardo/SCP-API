@@ -1,8 +1,26 @@
 <template>
     <div :class="['bg-white text-dark py-5']">
         <b-spinner v-if="isLoading" />
+        <div
+            :class="[
+                $style.navbar,
+                'position-fixed w-100 text-white d-flex justify-content-center',
+            ]"
+        >
+            <div
+                :class="[
+                    'w-50 d-flex justify-content-center align-items-center',
+                ]"
+            >
+                <a href="#scp" :class="['text-white me-4']">Scp</a>
+                <a href="#features" :class="['text-white mx-4']">Features</a>
+                <a href="#scp_skills" :class="['text-white ms-4']"
+                    >Scp Skills</a
+                >
+            </div>
+        </div>
         <b-container v-if="!isLoading">
-            <div :class="['mb-5']">
+            <div :class="['mb-5']" id="scp">
                 <h2>Register SCP</h2>
                 <b-form @submit.prevent="onSubmit({ type: 'scp' })">
                     <b-form-group label="SCP Number" label-for="scp_number">
@@ -11,7 +29,18 @@
                             v-model="scp_form.id"
                             placeholder="Write the SCP number..."
                             type="number"
+                            :state="hasError('id')"
                         ></b-form-input>
+                        <b-form-invalid-feedback>
+                            <p v-if="errors.id">
+                                <span
+                                    v-for="error in errors.id"
+                                    :key="error.id"
+                                >
+                                    {{ error }}
+                                </span>
+                            </p>
+                        </b-form-invalid-feedback>
                     </b-form-group>
                     <b-form-group label="SCP Name" label-for="name">
                         <b-form-input
@@ -19,7 +48,18 @@
                             v-model="scp_form.name"
                             placeholder="Write the SCP name"
                             type="text"
+                            :state="hasError('name')"
                         ></b-form-input>
+                        <b-form-invalid-feedback>
+                            <p v-if="errors.name">
+                                <span
+                                    v-for="error in errors.name"
+                                    :key="error.name"
+                                >
+                                    {{ error }}
+                                </span>
+                            </p>
+                        </b-form-invalid-feedback>
                     </b-form-group>
                     <b-form-group label="Feeling" label-for="feeling">
                         <b-form-input
@@ -27,23 +67,56 @@
                             v-model="scp_form.feeling"
                             placeholder="Write the feeling..."
                             type="text"
+                            :state="hasError('feeling')"
                         ></b-form-input>
+                        <b-form-invalid-feedback>
+                            <p v-if="errors.feeling">
+                                <span
+                                    v-for="error in errors.feeling"
+                                    :key="error.feeling"
+                                >
+                                    {{ error }}
+                                </span>
+                            </p>
+                        </b-form-invalid-feedback>
                     </b-form-group>
                     <b-form-group label="Class" label-for="class_id">
                         <b-form-select
                             id="class_id"
                             v-model="scp_form.class_id"
                             :options="catalog.classes"
+                            :state="hasError('class_id')"
                         >
                         </b-form-select>
+                        <b-form-invalid-feedback>
+                            <p v-if="errors.class_id">
+                                <span
+                                    v-for="error in errors.class_id"
+                                    :key="error.class_id"
+                                >
+                                    {{ error }}
+                                </span>
+                            </p>
+                        </b-form-invalid-feedback>
                     </b-form-group>
                     <b-form-group label="Type" label-for="type_id">
                         <b-form-select
                             id="type_id"
                             v-model="scp_form.type_id"
                             :options="catalog.types"
+                            :state="hasError('type_id')"
                         >
                         </b-form-select>
+                        <b-form-invalid-feedback>
+                            <p v-if="errors.type_id">
+                                <span
+                                    v-for="error in errors.type_id"
+                                    :key="error.type_id"
+                                >
+                                    {{ error }}
+                                </span>
+                            </p>
+                        </b-form-invalid-feedback>
                     </b-form-group>
                     <b-form-group label="Picture Url" label-for="picture">
                         <b-form-input
@@ -51,8 +124,19 @@
                             v-model="scp_form.picture"
                             placeholder="Write the picture url..."
                             type="text"
+                            :state="hasError('picture')"
                         ></b-form-input>
                     </b-form-group>
+                    <b-form-invalid-feedback>
+                        <p v-if="errors.picture">
+                            <span
+                                v-for="error in errors.picture"
+                                :key="error.picture"
+                            >
+                                {{ error }}
+                            </span>
+                        </p>
+                    </b-form-invalid-feedback>
                     <b-spinner v-if="isSubmitingLoading" />
                     <b-button
                         v-if="!isSubmitingLoading"
@@ -63,7 +147,7 @@
                     >
                 </b-form>
             </div>
-            <div :class="['mb-5']">
+            <div :class="['mb-5']" id="features">
                 <h2>Register SCP Features</h2>
                 <b-form @submit.prevent="onSubmit({ type: 'features' })">
                     <b-form-group
@@ -232,3 +316,6 @@ export default {
     },
 };
 </script>
+<style module>
+@import url(../../assets/admin/admin.module.css);
+</style>

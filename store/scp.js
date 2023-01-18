@@ -25,7 +25,6 @@ export const actions = {
     },
 
     async registerScp(context, form) {
-        console.log(form);
         const config = {
             headers: {
                 "Content-Type": "application/json",

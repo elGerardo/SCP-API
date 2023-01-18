@@ -3,14 +3,14 @@ import { mapGetters } from "vuex";
 
 Vue.mixin({
     methods: {
-        hasError() {
-            console.log("error");
+        hasError(property) {
+            return this.errors.hasOwnProperty(property) ? false : null;
         },
     },
 
     computed: {
         ...mapGetters({
-            errors: "errors",
+            errors: "errors/errors",
         }),
     },
 });

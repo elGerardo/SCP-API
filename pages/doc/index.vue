@@ -1,9 +1,9 @@
 <template>
     <div :class="[$style.container, 'py-5']">
         <b-container :class="['my-5 position-relative']">
-            <div :class="['w-25 text-dark position-fixed']">
+            <div :class="['text-dark position-fixed']">
                 <h2>Content</h2>
-                <b-nav vertical>
+                <b-nav vertical :class="[$style.navbar]">
                     <NuxtLink :class="['text-dark']" to="#information"
                         >Information</NuxtLink
                     >

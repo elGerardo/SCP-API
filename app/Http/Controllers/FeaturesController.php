@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Features;
 use App\Http\Requests\PostFeatureRequest;
+use Illuminate\Support\Facades\Log;
 
 class FeaturesController extends Controller
 {

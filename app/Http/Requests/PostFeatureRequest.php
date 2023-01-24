@@ -14,14 +14,14 @@ class PostFeatureRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function messages()
     {
         return [
             "scp_id.required" => "Parameter scp_id is required",
-            "scp_id.number" => "Parameter scp_id must be a number",
+            "scp_id.integer" => "Parameter scp_id must be a number",
 
             "short_description.required" => "Parameter short_description is required",
             "short_description.string" => "Parameter short_description must be a string",
@@ -42,7 +42,7 @@ class PostFeatureRequest extends FormRequest
     public function rules()
     {
         return [
-            "scp_id" => "required|number",
+            "scp_id" => "required|integer",
             "short_description" => "required|string",
             "full_description" => "required|string",
             "color" => "required|string",

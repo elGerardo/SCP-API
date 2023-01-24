@@ -22,7 +22,7 @@ class PostScpRequest extends FormRequest
 
         return [
             "id.required" => "Parameter id is required",
-            "id.required" => "Parameter id must be a number",
+            "id.integer" => "Parameter id must be a number",
 
             "name.required" => "Parameter name is required",
             "name.string" => "Parameter name must be a string",
@@ -49,8 +49,8 @@ class PostScpRequest extends FormRequest
     public function rules()
     {
         return [
-            "id" => "required|integer",
-            "name" => "required|string",
+            "id" => "required|integer|unique:posts",
+            "name" => "required|string|unique:posts",
             "feeling" => "required|string",
             "class_id" => "required|integer",
             "type_id" => "required|integer",

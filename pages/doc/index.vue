@@ -37,6 +37,7 @@
                     </div>
                     <b-card
                         :class="['my-5']"
+                        id="fetching"
                         bg-variant="dark"
                         text-variant="white"
                         title="URL Endpoint Structure"

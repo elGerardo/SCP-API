@@ -1,11 +1,16 @@
+const config = {
+    headers: {
+        "Content-Type": "application/json",
+        pwd: process.env.AdminPwd,
+    },
+};
+
 export const actions = {
-    async registerFeatures({ commit }, form) {
-        return await fetch(`${process.env.baseUrlAdminApi}/register_features`, {
-            method: "POST",
-            headers: {
-                pwd: process.env.AdminPwd,
-            },
-            body: JSON.stringify(form)
-        }).then((response) => response.json());
+    async registerFeatures(context, form) {
+        return await this.$axios.post(
+            `${process.env.baseUrlAdminApi}/register_features`,
+            form,
+            config
+        );
     },
 };

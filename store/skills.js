@@ -1,17 +1,12 @@
 export const state = () => ({
-    scp: null,
     items: {},
 });
 
 export const getters = {
-    scp: (state) => state.data,
     items: (state) => state.items,
 };
 
 export const mutations = {
-    scp(state, data) {
-        state.scp = data;
-    },
     items(state, data) {
         state.items = data;
     },
@@ -25,17 +20,21 @@ const config = {
 };
 
 export const actions = {
-    async get({ commit }) {
-        let data = await this.$axios.get(`${process.env.baseUrlApi}/scp/all`);
-
+    /*async get({ commit }) {
+        let data = await this.$axios.get(`${process.env.baseUrlAdminApi}/catalog/all`, {
+            headers: {
+                pwd: process.env.AdminPwd,
+            },
+        });
+        
         commit("items", data.data.response);
-    },
+    },*/
 
-    async registerScp(context, form) {
+    async registerSkill(context, form){
         return await this.$axios.post(
-            `${process.env.baseUrlAdminApi}/register_scp`,
+            `${process.env.baseUrlAdminApi}/register_skill`,
             form,
             config
-        );
-    },
+        )
+    }
 };

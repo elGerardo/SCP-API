@@ -52,7 +52,12 @@ Route::group(["middleware" => "verifyAdmin", "prefix" => "admin"], function () {
         ->name('registerFeatures')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
+    /*-- SKILLS --*/
+    Route::post('/register_skill', [Controllers\SkillController::class, 'registerSkill'])
+        ->name('registerSkill')
+        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
     /*-- CATALOG --*/
     Route::get('/catalog/all', [Controllers\CatalogController::class, 'get'])
-        ->name('getCatalog');
+    ->name('getCatalog');
 });

@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (Throwable $e) {
             //
-            return response()->json(["status" => 404,"message" => "Endpoint Not Found"]);
+            return response()->json(["status" => 404,"message" => $e]);
         });
     }
 }

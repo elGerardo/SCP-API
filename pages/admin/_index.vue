@@ -1,29 +1,8 @@
 <template>
     <div :class="['bg-white text-dark py-5']">
         <b-spinner v-if="isLoading" />
-        <!--
-        <div
-            :class="[
-                $style.navbar,
-                'position-fixed w-100 text-white d-flex justify-content-center',
-            ]"
-        >
-            <div
-                :class="[
-                    'w-50 d-flex justify-content-center align-items-center',
-                ]"
-            >
-                <a href="#scp" :class="['text-white me-4']">Scp</a>
-                <a href="#features" :class="['text-white mx-4']"
-                    >Scp Features</a
-                >
-                <a href="#scp_skills" :class="['text-white ms-4']"
-                    >Scp Skills</a
-                >
-                <a href="#features" :class="['text-white mx-4']">Scp Enemies</a>
-            </div>
-        </div>-->
         <b-container v-if="!isLoading">
+            <!-- SCP COLLAPSE FORMS -->
             <b-button
                 v-b-toggle.scp_collapse
                 variant="dark"
@@ -31,6 +10,7 @@
                 >SCP</b-button
             >
             <b-collapse id="scp_collapse">
+                <!-- REGISTER SCP -->
                 <div :class="['mb-5']" id="scp">
                     <h2>Register SCP</h2>
                     <b-form @submit.prevent="onSubmit({ type: 'scp' })">
@@ -158,6 +138,7 @@
                         >
                     </b-form>
                 </div>
+                <!-- REGISTER FEATURES -->
                 <div :class="['mb-5']" id="features">
                     <h2>Register SCP Features</h2>
                     <b-form @submit.prevent="onSubmit({ type: 'features' })">
@@ -256,8 +237,45 @@
                         >
                     </b-form>
                 </div>
+
+                <!-- REGISTER ENEMIES -->
+                <div :class="['mb-5']" id="enemies">
+                    <h2>Register SCP Enemies</h2>
+                    <b-form @submit.prevent="onSubmit({ type: 'enemies' })">
+                        <b-form-group label="SCP ID" label-for="scp_id">
+                            <b-form-select
+                                id="scp_id"
+                                v-model="scp_enemy_form.scp_id"
+                                :options="catalog.enemies"
+                            />
+                        </b-form-group>
+                        <b-form-group
+                            label="SCP Enemies ID"
+                            label-for="scp_enemies_id"
+                        >
+                            <b-form-select
+                                id="scp_enemies_id"
+                                v-model="scp_enemy_form.enemies"
+                                :options="catalog.enemies"
+                                multiple
+                            />
+                            <div class="mt-3">
+                                Selected:
+                                <strong>{{ scp_enemy_form.enemies }}</strong>
+                            </div>
+                        </b-form-group>
+                        <b-button
+                            v-if="!isSubmitingLoading"
+                            variant="dark"
+                            type="submit"
+                            style="font-size: 1.4rem"
+                            >Register SCP Enemies</b-button
+                        >
+                    </b-form>
+                </div>
             </b-collapse>
 
+            <!-- SKILL COLLAPSE FORMS -->
             <b-button
                 v-b-toggle.skill_collapse
                 variant="dark"
@@ -301,6 +319,7 @@
                 </div>
             </b-collapse>
 
+            <!-- TYPE COLLAPSE FORMS -->
             <b-button
                 v-b-toggle.types_collapse
                 variant="dark"
@@ -308,7 +327,6 @@
                 >Types</b-button
             >
             <b-collapse id="types_collapse">
-
                 <div :class="['mb-5']" id="types">
                     <h2>Register Types</h2>
                     <b-form @submit.prevent="onSubmit({ type: 'types' })">
@@ -343,7 +361,6 @@
                         >
                     </b-form>
                 </div>
-
             </b-collapse>
         </b-container>
     </div>
@@ -374,6 +391,7 @@ export default {
                 type_id: 0,
                 picture: "",
             },
+            scp_enemy_form: { scp_id: 0, enemies: [] },
             features_form: {
                 scp_id: "",
                 short_descripton: "",
@@ -402,7 +420,6 @@ export default {
     },
 
     methods: {
-        
         async onSubmit({ type }) {
             this.isSubmitingLoading = true;
             let form;
@@ -429,6 +446,24 @@ export default {
                             type_id: 0,
                             picture: "",
                         };
+                    }
+                } catch (e) {
+                    if (process.env.environment == "local") console.log(e);
+                }
+                this.isSubmitingLoading = false;
+                return;
+            }
+
+            if (type == "enemies") {
+                try {
+                    const response = await this.$store.dispatch(
+                        "enemies/registerEnemies",
+                        this.scp_enemy_form
+                    );
+
+                    if (response.status == 200) {
+                        await this.$store.dispatch("catalog/get");
+                        this.scp_enemy_form = { scp_id: 0, enemies: [] };
                     }
                 } catch (e) {
                     if (process.env.environment == "local") console.log(e);
@@ -488,8 +523,25 @@ export default {
                 return;
             }
 
-            if(type == "types") {
+            if (type == "types") {
+                try {
+                    const response = await this.$store.dispatch(
+                        "types/registerType",
+                        this.type_form
+                    );
 
+                    if (response.status == 200) {
+                        await this.$store.dispatch("catalog/get");
+                        this.type_form = {
+                            name: "",
+                            descripton: "",
+                        };
+                    }
+                } catch (e) {
+                    if (process.env.environment == "local") console.log(e);
+                }
+                this.isSubmitingLoading = false;
+                return;
             }
         },
     },

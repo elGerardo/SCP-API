@@ -4,71 +4,89 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class Scp extends Model
 {
     protected $table = 'scp';
-    protected $hidden = ['class_id','feature_id','type_id'];
+    protected $hidden = ['class_id', 'feature_id', 'type_id'];
     public $timestamps = false;
 
-    public static function register($request){        
-        $scp = new Scp();
-        $scp->id = $request->id;
-        $scp->scp_link = 'SCP-'.$request->id;
-        $scp->name = $request->name;
-        $scp->feeling = $request->feeling;
-        $scp->class_id = $request->class_id;
-        $scp->type_id = $request->type_id;
-        $scp->picture = $request->picture;
-        $scp->save();
+    public static function register($request)
+    {
+        try {
+            DB::beginTransaction();
+            $scp = new Scp();
+            $scp->id = $request->id;
+            $scp->scp_link = 'SCP-'.$request->id;
+            $scp->name = $request->name;
+            $scp->feeling = $request->feeling;
+            $scp->class_id = $request->class_id;
+            $scp->type_id = $request->type_id;
+            $scp->picture = $request->picture;
+            $scp->save();
+            DB::commit();
+            return true;
+        } catch (Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
     }
 
-    public static function get($request){
+    public static function get($request)
+    {
         $limit = $request->limit;
-        if($limit == null) $limit = 10;
+        if ($limit == null) $limit = 10;
         $data = Scp::with(['class', 'skills.skill', 'features'])
-        ->orderBy('id')
-        ->take($limit)
-        ->get();
+            ->orderBy('id')
+            ->take($limit)
+            ->get();
         return $data;
     }
 
-    public static function getRange($request){
+    public static function getRange($request)
+    {
         $first = $request->first;
         $last = $request->last;
         $limit = $request->limit;
-        if($limit == null) $limit = 10;
+        if ($limit == null) $limit = 10;
         $data = Scp::with(['class', 'skills.skill', 'features'])
-        ->whereBetween('id',[$first, $last])
-        ->take($limit)
-        ->get();
+            ->whereBetween('id', [$first, $last])
+            ->take($limit)
+            ->get();
         return $data;
     }
 
-    public static function getScpEnemies($request){
+    public static function getScpEnemies($request)
+    {
         $id = $request->scp;
         $data = ScpEnemies::where('scp_id', $id)
-        ->with('enemy', function($query) {
-            $query->select('id','name','scp_link');
-        })->get();
+            ->with('enemy', function ($query) {
+                $query->select('id', 'name', 'scp_link');
+            })->get();
         return $data;
     }
 
-    public static function find($request){
+    public static function find($request)
+    {
         $id = $request->scp;
         $data = Scp::with(['class', 'skills.skill', 'features'])->find($id);
         return $data;
     }
 
-    public function class(){
+    public function class()
+    {
         return $this->belongsTo(Classes::class, 'class_id', 'id');
     }
 
-    public function skills(){
+    public function skills()
+    {
         return $this->hasMany(ScpSkills::class, 'scp_id', 'id');
     }
 
-    public function features(){
+    public function features()
+    {
         return $this->belongsTo(Features::class, 'id', 'scp_id');
     }
 }

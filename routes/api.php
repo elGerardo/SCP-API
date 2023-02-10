@@ -47,6 +47,11 @@ Route::group(["middleware" => "verifyAdmin", "prefix" => "admin"], function () {
         ->name('registerScp')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
+    /*-- SCP ENEMIES --*/
+    Route::post('/register_scp_enemies', [Controllers\ScpEnemiesController::class, 'registerScpEnemies'])
+    ->name('registerEnemies')
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
     /*-- FEATURES --*/
     Route::post('/register_features', [Controllers\FeaturesController::class, 'registerFeatures'])
         ->name('registerFeatures')
@@ -56,6 +61,11 @@ Route::group(["middleware" => "verifyAdmin", "prefix" => "admin"], function () {
     Route::post('/register_skill', [Controllers\SkillController::class, 'registerSkill'])
         ->name('registerSkill')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
+    /*-- TYPES --*/
+    Route::post('/register_type', [Controllers\TypeController::class, 'registerType'])
+    ->name('registerType')
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
     /*-- CATALOG --*/
     Route::get('/catalog/all', [Controllers\CatalogController::class, 'get'])

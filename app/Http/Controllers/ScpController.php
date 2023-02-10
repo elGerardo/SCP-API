@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Scp;
-use App\Models\Features;
+use App\Models\ScpEnemies;
 use App\Http\Requests\GetScpRequest;
 use App\Http\Requests\GetRangeRequest;
 use App\Http\Requests\PostScpRequest;
+use App\Http\Requests\PostScpEnemiesRequest;
 
 class ScpController extends Controller
 {

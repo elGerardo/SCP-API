@@ -14,8 +14,9 @@ class CatalogController extends Controller
     {
         $types = Type::select(["id as value", "name as text"])->orderBy("id")->get();
         $classes = Classes::select(["id as value", "name as text"])->orderBy("id")->get();
-        $scp = Scp::select(["scp.id as value","scp.id as text","features.scp_id as feature_id"])->leftjoin("features","features.scp_id","scp.id")->whereNull("features.scp_id")->orderBy("id")->get();
-        $data = ["scps" => $scp, "classes" => $classes, "types" => $types];
+        $scp = Scp::select(["scp.id as value", "scp.id as text", "features.scp_id as feature_id"])->leftjoin("features", "features.scp_id", "scp.id")->whereNull("features.scp_id")->orderBy("id")->get();
+        $enemies = Scp::select(["scp.id as value", "scp.id as text"])->get();
+        $data = ["scps" => $scp, "classes" => $classes, "types" => $types, "enemies" => $enemies];
         return response()->json(["status" => 200, "response" => $data]);
     }
 }
